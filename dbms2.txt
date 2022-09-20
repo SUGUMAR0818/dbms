@@ -1,0 +1,87 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sugumar;
+Database changed
+mysql> alter table student add primary key(city);
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| regno    | int(3)   | YES  |     | NULL    |       |
+| name     | char(15) | YES  |     | NULL    |       |
+| gender   | char(1)  | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
+| mobileno | int(10)  | YES  |     | NULL    |       |
+| city     | char(10) | NO   | PRI |         |       |
++----------+----------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> alter table faculty add primary key(facno);
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| facno    | int(3)   | NO   | PRI | 0       |       |
+| facname  | char(15) | YES  |     | NULL    |       |
+| gender   | char(1)  | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
+| mobileno | int(10)  | YES  |     | NULL    |       |
+| doj      | int(10)  | YES  |     | NULL    |       |
+| dept     | char(10) | YES  |     | NULL    |       |
+| depts    | char(20) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+8 rows in set (0.02 sec)
+
+mysql> alter table depertment add primary key(deptno);
+ERROR 1146 (42S02): Table 'sugumar.depertment' doesn't exist
+mysql> alter table department add primary key(deptno);
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc department;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| deptno   | int(10)  | NO   | PRI | 0       |       |
+| deptname | char(10) | YES  |     | NULL    |       |
+| depthead | char(10) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> alter table coruse add primary key(coruseno);
+ERROR 1146 (42S02): Table 'sugumar.coruse' doesn't exist
+mysql> alter table course add primary key(coruseno);
+ERROR 1072 (42000): Key column 'coruseno' doesn't exist in table
+mysql> alter table course add primary key(courseno);
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc course;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| courseno   | int(3)   | NO   | PRI | 0       |       |
+| coursedesc | char(15) | YES  |     | NULL    |       |
+| coursetype | char(1)  | YES  |     | NULL    |       |
+| semno      | int(10)  | YES  |     | NULL    |       |
+| hallno     | int(10)  | YES  |     | NULL    |       |
+| facno      | int(10)  | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
