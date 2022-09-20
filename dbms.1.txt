@@ -1,0 +1,137 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sugumar;
+Database changed
+mysql> select * from student;
++-------+---------+--------+------+----------+----------+
+| regno | name    | gender | dob  | mobileno | city     |
++-------+---------+--------+------+----------+----------+
+|   666 | sugumar | m      |    0 |    65464 | new york |
++-------+---------+--------+------+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> create table faculty(facno int(3),facname char(15),gender char(1),dob int(10),mobileno int (10),doj int (10));
+ERROR 1050 (42S01): Table 'faculty' already exists
+mysql> show tables;
++-------------------+
+| Tables_in_sugumar |
++-------------------+
+| course            |
+| department        |
+| depatment         |
+| faculty           |
+| student           |
+| students          |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc faculty;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| facno    | int(3)   | YES  |     | NULL    |       |
+| facname  | char(15) | YES  |     | NULL    |       |
+| gender   | char(1)  | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
+| mobileno | int(10)  | YES  |     | NULL    |       |
+| doj      | int(10)  | YES  |     | NULL    |       |
+| dept     | char(10) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+7 rows in set (0.05 sec)
+
+mysql> select *from faculty;
+Empty set (0.00 sec)
+
+mysql> insert into values faculty(123,"deepa","f",12/8/1992,34567,13/12/2005,"dbms");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values faculty(123,"deepa","f",12/8/1992,34567,13/12/2005,"dbms")' at line 1
+mysql> insert into faculty values(123,"deepa","f",12/8/1992,34567,13/12/2005,"dbms");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select *from faculty;
++-------+---------+--------+------+----------+------+------+
+| facno | facname | gender | dob  | mobileno | doj  | dept |
++-------+---------+--------+------+----------+------+------+
+|   123 | deepa   | f      |    0 |    34567 |    0 | dbms |
++-------+---------+--------+------+----------+------+------+
+1 row in set (0.00 sec)
+
+mysql> create table depatment(deptno int(10),deptname int (10),depthead char(10));
+ERROR 1050 (42S01): Table 'depatment' already exists
+mysql> desc department;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| deptno   | int(10)  | YES  |     | NULL    |       |
+| deptname | char(10) | YES  |     | NULL    |       |
+| depthead | char(10) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into department values(234565,"biology","sugumar");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc course;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| courseno   | int(3)   | YES  |     | NULL    |       |
+| coursedesc | char(15) | YES  |     | NULL    |       |
+| coursetype | char(1)  | YES  |     | NULL    |       |
+| semno      | int(10)  | YES  |     | NULL    |       |
+| hallno     | int(10)  | YES  |     | NULL    |       |
+| facno      | int(10)  | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> insert into course values(235,"biology","d",1234,456,2345678);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> alter table faculty add dept char(10);
+ERROR 1060 (42S21): Duplicate column name 'dept'
+mysql> desc faculty;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| facno    | int(3)   | YES  |     | NULL    |       |
+| facname  | char(15) | YES  |     | NULL    |       |
+| gender   | char(1)  | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
+| mobileno | int(10)  | YES  |     | NULL    |       |
+| doj      | int(10)  | YES  |     | NULL    |       |
+| dept     | char(10) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+7 rows in set (0.05 sec)
+
+mysql> alter table faculty add dept char(20);
+ERROR 1060 (42S21): Duplicate column name 'dept'
+mysql> alter table faculty add depts char(20);
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| facno    | int(3)   | YES  |     | NULL    |       |
+| facname  | char(15) | YES  |     | NULL    |       |
+| gender   | char(1)  | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
+| mobileno | int(10)  | YES  |     | NULL    |       |
+| doj      | int(10)  | YES  |     | NULL    |       |
+| dept     | char(10) | YES  |     | NULL    |       |
+| depts    | char(20) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+8 rows in set (0.05 sec)
+
+mysql>
