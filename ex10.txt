@@ -1,0 +1,78 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sugmar;
+ERROR 1049 (42000): Unknown database 'sugmar'
+mysql> use sugumar;
+Database changed
+mysql> select sum(scores) from course;
++-------------+
+| sum(scores) |
++-------------+
+|         636 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select coursedesc,count(coursetype) from coures;
+ERROR 1146 (42S02): Table 'sugumar.coures' doesn't exist
+mysql> select coursedesc,count(coursetype) from course;
++------------+-------------------+
+| coursedesc | count(coursetype) |
++------------+-------------------+
+| dbms       |                 6 |
++------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select coruseno ,coursebase,count(regno) from course where regno like'4512%';
+ERROR 1054 (42S22): Unknown column 'coruseno' in 'field list'
+mysql> select courseno ,coursebase,count(regno) from course where regno like'4512%';
+ERROR 1054 (42S22): Unknown column 'coursebase' in 'field list'
+mysql> select courseno ,coursedesc,count(regno) from course where regno like'4512%'
+    -> select courseno ,coursedesc,count(regno) from course where regno like'4512%'
+    -> select courseno ,coursedesc,count(regno) from course where regno like'4512%'
+    -> select courseno ,coursedesc,count(regno) from course where regno like'4512%'
+    -> select courseno ,coursedesc,count(regno) from course where regno like'4512%'
+    ->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
