@@ -1,0 +1,53 @@
+mysql> select name,dob from student order by regno;
++---------+------+
+| name    | dob  |
++---------+------+
+| sugumar |    0 |
+| sugumar |    0 |
++---------+------+
+2 rows in set (0.02 sec)
+
+mysql> select *from faculty order by dob;
++-------+---------+--------+------+----------+------+------+-------+
+| facno | facname | gender | dob  | mobileno | doj  | dept | depts |
++-------+---------+--------+------+----------+------+------+-------+
+|   345 | deepa   | f      |    0 |    34567 |    0 | dbms | dbms  |
++-------+---------+--------+------+----------+------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select *from faculty order by dob;
++-------+---------+--------+------+----------+------+------+-------+
+| facno | facname | gender | dob  | mobileno | doj  | dept | depts |
++-------+---------+--------+------+----------+------+------+-------+
+|   345 | deepa   | f      |    0 |    34567 |    0 | dbms | dbms  |
++-------+---------+--------+------+----------+------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select name,dob from student order by regno;
++---------+------+
+| name    | dob  |
++---------+------+
+| sugumar |    0 |
+| sugumar |    0 |
++---------+------+
+2 rows in set (0.00 sec)
+
+mysql> select faculty.facno,faculty.facname,department.deptno,department.deptname from faculty cross join department;
++-------+---------+--------+----------+
+| facno | facname | deptno | deptname |
++-------+---------+--------+----------+
+|   345 | deepa   |    234 | dbms     |
+|   345 | deepa   | 234565 | biology  |
++-------+---------+--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select student .name, student .marks,course.courseno from student inner join course on student.course=course.courseno;
+ERROR 1054 (42S22): Unknown column 'student.marks' in 'field list'
+mysql> select faculty .facno,faculty.facname,department.deptno,department.deptname from faculty cross join department;
++-------+---------+--------+----------+
+| facno | facname | deptno | deptname |
++-------+---------+--------+----------+
+|   345 | deepa   |    234 | dbms     |
+|   345 | deepa   | 234565 | biology  |
++-------+---------+--------+----------+
+2 rows in set (0.00 sec)
