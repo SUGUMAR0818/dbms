@@ -1,0 +1,108 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sugumar;
+Database changed
+mysql> create table marks(regno int(10),studentname char(10),courseno int(10),coursemarks int(10),facultydoj int (10));
+ERROR 1050 (42S01): Table 'marks' already exists
+mysql> desc marks;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| regno | int(10)  | YES  |     | NULL    |       |
+| name  | char(10) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> select*from stud2 where marks>(select avg(marks)from stud2);
+ERROR 1146 (42S02): Table 'sugumar.stud2' doesn't exist
+mysql> desc stud2;
+ERROR 1146 (42S02): Table 'sugumar.stud2' doesn't exist
+mysql> create table stud2(regno int(10),studname char(10),gender int (1),dob int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc stud2;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| regno    | int(10)  | YES  |     | NULL    |       |
+| studname | char(10) | YES  |     | NULL    |       |
+| gender   | int(1)   | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into stud2 values(2344,"sugumar","m",08/9/2002));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into stud2 value (2344,"sugumar","m",08/9/2002));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into stud2 value (2344,"sugumar","m",08/9/2002);
+ERROR 1366 (HY000): Incorrect integer value: 'm' for column 'gender' at row 1
+mysql> insert into stud2 value (2344,'sugumar','m',08/9/2002);
+ERROR 1366 (HY000): Incorrect integer value: 'm' for column 'gender' at row 1
+mysql> insert into marks value (2344,'sugumar','m',08/9/2002);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into marks value (2344,'sugumar','m',08/9/2002);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> select name from stud2 where assements>1;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> create table stud2(regno int(10),studname char(10),gender int (1),dob int(10),assement(1));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(1))' at line 1
+mysql> create table stud2(regno int(10),studname char(10),gender int (1),dob int(10),avgmarks int(1));
+ERROR 1050 (42S01): Table 'stud2' already exists
+mysql> desc stud2;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| regno    | int(10)  | YES  |     | NULL    |       |
+| studname | char(10) | YES  |     | NULL    |       |
+| gender   | int(1)   | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> select*ferm faculty order by doj limit 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ferm faculty order by doj limit 1' at line 1
+mysql> select*form faculty order by doj limit 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form faculty order by doj limit 1' at line 1
+mysql> desc faculty;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| facno    | int(3)   | NO   | PRI | 0       |       |
+| facname  | char(15) | YES  |     | NULL    |       |
+| gender   | char(1)  | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
+| mobileno | int(10)  | YES  |     | NULL    |       |
+| doj      | int(10)  | YES  |     | NULL    |       |
+| dept     | char(10) | YES  |     | NULL    |       |
+| depts    | char(20) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+8 rows in set (0.02 sec)
+
+mysql> select courseno,marks from stud2 where marks>(select avg(marks) from stud2)order by courseno;
+ERROR 1054 (42S22): Unknown column 'courseno' in 'field list'
+mysql> create table stud2(regno int(10),studname char(10),gender int (1),dob int(10),courseno int(10));
+ERROR 1050 (42S01): Table 'stud2' already exists
+mysql> desc stud2;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| regno    | int(10)  | YES  |     | NULL    |       |
+| studname | char(10) | YES  |     | NULL    |       |
+| gender   | int(1)   | YES  |     | NULL    |       |
+| dob      | int(10)  | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+m
